@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: dfa33e180807df6488a46aa3fe68f2eb
   - enabled: 1
-    path: Assets/Scenes/Battle.unity
+    path: Assets/Scenes/BattleScene.unity
     guid: 89e0e9a80b4d15c4b96100e1f724c9b2
+  - enabled: 1
+    path: Assets/Scenes/MapEditScene.unity
+    guid: 3c4a06dacd2fd1048bf24d154724bcba

@@ -10,6 +10,8 @@ public class Case{
     public GameObject GameObject { get; protected set; }
     public string StrCaseType { get; protected set; }
 
+
+
     public Case(GV.BATTLEFIELDTYPE bType, GV.CASETYPES cType, Vector3 position, float height) {
         GameObject parent = GameObject.Find("BattleField");
 
@@ -40,15 +42,23 @@ public class Case{
             }
         }
 
+
         Height = height * GV._PerCaseHeight;
         CaseType = cType;
         GameObject = GameObject.Instantiate(Resources.Load<GameObject>(GV._PathToPrefabs + "BasicTile"));
         position.y = Height / 2;
         GameObject.transform.position = position;
         GameObject.transform.localScale = new Vector3(1, Height, 1);
-        GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + cType.ToString());
+        if (cType == GV.CASETYPES.Cactus || cType == GV.CASETYPES.Fir || cType == GV.CASETYPES.Oak) {
+            GenerateTree(cType.ToString());
+            GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + DefineSrtCaseType(cType));
+        }
+        else {
+            GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + cType.ToString());
+        }
         GameObject.transform.SetParent(parent.transform);
         GameObject.name = "tile_" + cType.ToString();
+
     }
 
     public void Update(GV.CASETYPES cType, float height) {
@@ -89,6 +99,7 @@ public class Case{
         GameObject.name = "tile_" + StrCaseType;
     }
 
+    /*
     public Case(float height, byte battlefieldType, Vector3 position, GameObject parent) {
         Height = height * GV._PerCaseHeight;
 
@@ -101,7 +112,7 @@ public class Case{
         GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + StrCaseType);
         GameObject.transform.SetParent(parent.transform);
         GameObject.name = "tile_" + CaseType.ToString();
-    }
+    }*/
 
     private GV.CASETYPES GenerateDesertCase() {
         GV.CASETYPES backer;
@@ -154,32 +165,17 @@ public class Case{
         return backer;
     }
 
-    private string DefineSrtCaseType(GV.CASETYPES caseType, byte battlefieldType) {
+    private string DefineSrtCaseType(GV.CASETYPES caseType) {
         string backer = "";
-        switch (battlefieldType) {
-            case 0:
-                if (caseType == GV.CASETYPES.Cactus) {
-                    GenerateTree(battlefieldType);
-                    backer = "Sand";
-                }
-                else
-                    backer = caseType.ToString();
+        switch (caseType) {
+            case GV.CASETYPES.Cactus:
+                backer = "Sand";
                 break;
-            case 1:
-                if (caseType == GV.CASETYPES.Oak) {
-                    backer = "Grass";
-                    GenerateTree(battlefieldType);
-                }
-                else
-                    backer = caseType.ToString();
+            case GV.CASETYPES.Oak:
+                backer = "Grass";
                 break;
-            case 2:
-                if (caseType == GV.CASETYPES.Fir) {
-                    backer = "Snow";
-                    GenerateTree(battlefieldType);
-                }
-                else
-                    backer = caseType.ToString();
+            case GV.CASETYPES.Fir:
+                backer = "Snow";
                 break;
             default:
                 backer = "Canyon";
@@ -234,4 +230,18 @@ public class Case{
         tree.transform.localPosition = position;
 
     }
+
+    private void GenerateTree(string treeName) {
+        GameObject tree = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(GV._PathToPrefabs + "CasesDeco/" + treeName));
+        tree.name = treeName;
+        tree.transform.parent = GameObject.transform;
+        Vector3 position = tree.transform.localPosition;
+        position.x = 0;
+        position.z = 0;
+        position.y = position.y + GV._PerCaseHeight;
+        tree.transform.localPosition = position;
+
+    }
+
+
 }

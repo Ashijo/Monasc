@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,16 +21,19 @@ public class BattlefieldManager {
     #endregion
 
 
+    GameObject battlefield;
 
-    // Use this for initialization
-    public void Start () {
-	}
+ 
+    public void GenerateBattlefield(string name) {
 
-    public void CreateMap(string name = "Meadow") {
+        string json = File.ReadAllText("Assets/Resources/BattlefieldMaps/" + name + ".jmap");
+
+        Map map = JsonUtility.FromJson<Map>(json);
+        battlefield = new GameObject();
+        battlefield.AddComponent<BattleField>();
+        battlefield.GetComponent<BattleField>().GenerateBattlefield(map);
+
     }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

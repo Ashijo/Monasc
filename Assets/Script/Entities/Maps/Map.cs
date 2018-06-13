@@ -27,9 +27,9 @@ public class Map {
         }
 
         this.battleField = new List<CaseData>();
-        for (int i = 0; i < size.x; i++) {
-            for (int j = 0; j < size.y; j++) {
-                CaseData cs = new CaseData(type, GV.CASETYPES.DUMMY, new Vector3(i, 0, j), 1);
+        for (int i = 0; i < size.y; i++) {
+            for (int j = 0; j < size.x; j++) {
+                CaseData cs = new CaseData(type, GV.CASETYPES.DUMMY, new Vector3(j, 0, -i), 1);
                 battleField.Add(cs);
             }
         }

@@ -6,8 +6,7 @@ public class BattleFlow : Flow {
 
 
     public override void InitializeFlow() {
-        BattlefieldManager.Instance.Start();
-        BattlefieldManager.Instance.CreateMap();
+        BattlefieldManager.Instance.GenerateBattlefield("testDesert");
     }
     public override void UpdateFlow(float _dt, InputParams _ip) {
     }

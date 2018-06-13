@@ -68,7 +68,7 @@ public class EditMaps : EditorWindow {
 
         GUILayout.BeginHorizontal();
 
-
+        GUILayout.Label("Heigth : ");
         newHeight = EditorGUILayout.IntSlider(newHeight, 1, 3);
 
         GUILayout.EndHorizontal();

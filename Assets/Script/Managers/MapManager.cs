@@ -45,8 +45,6 @@ public class MapManager {
         FileInfo[] infos = dir.GetFiles("*.jmap");
         string[] backer = new string[infos.Length];
 
-        
-
         for (int i = 0; i < infos.Length; ++i) {
             string s = infos[i].Name;
             backer[i] = s.Remove(s.Length-5);
