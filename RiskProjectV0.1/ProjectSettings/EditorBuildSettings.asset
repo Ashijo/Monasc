@@ -15,6 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene.unity
     guid: 89e0e9a80b4d15c4b96100e1f724c9b2
   - enabled: 1
+<<<<<<< HEAD:RiskProjectV0.1/ProjectSettings/EditorBuildSettings.asset
     path: Assets/Scenes/MacroScene.unity
     guid: 00d961840f819dd489bb5c855ece0d22
   m_configObjects: {}
+=======
+    path: Assets/Scenes/MapEditScene.unity
+    guid: 3c4a06dacd2fd1048bf24d154724bcba
+>>>>>>> 17f7d762a1275c10cac26dc13c96c369f09f92bd:ProjectSettings/EditorBuildSettings.asset

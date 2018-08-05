@@ -221,8 +221,13 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114837718853814432, guid: dad827ead3834af4cbf97170b6a49d4c, type: 2}
+<<<<<<< HEAD:RiskProjectV0.1/Assets/Scenes/MainScene.unity
   m_SourcePrefab: {fileID: 100100000, guid: dad827ead3834af4cbf97170b6a49d4c, type: 2}
   m_IsPrefabAsset: 0
+=======
+  m_ParentPrefab: {fileID: 100100000, guid: dad827ead3834af4cbf97170b6a49d4c, type: 2}
+  m_IsPrefabParent: 0
+>>>>>>> 17f7d762a1275c10cac26dc13c96c369f09f92bd:Assets/Scenes/MainScene.unity
 --- !u!1 &1476410782
 GameObject:
   m_ObjectHideFlags: 0

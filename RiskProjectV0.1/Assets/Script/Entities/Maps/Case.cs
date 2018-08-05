@@ -10,6 +10,13 @@ public class Case{
     public GameObject GameObject    { get; protected set; }
     public string StrCaseType       { get; protected set; }
 
+<<<<<<< HEAD:RiskProjectV0.1/Assets/Script/Entities/Maps/Case.cs
+=======
+
+
+    public Case(GV.BATTLEFIELDTYPE bType, GV.CASETYPES cType, Vector3 position, float height) {
+        GameObject parent = GameObject.Find("BattleField");
+>>>>>>> 17f7d762a1275c10cac26dc13c96c369f09f92bd:Assets/Script/Entities/Maps/Case.cs
 
 
     public Case(GV.BATTLEFIELDTYPE bType, GV.CASETYPES cType, Vector3 position, float height, GameObject parent) {
