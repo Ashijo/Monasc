@@ -10,17 +10,10 @@ public class Case{
     public GameObject GameObject    { get; protected set; }
     public string StrCaseType       { get; protected set; }
 
-<<<<<<< HEAD:RiskProjectV0.1/Assets/Script/Entities/Maps/Case.cs
-=======
-
-
-    public Case(GV.BATTLEFIELDTYPE bType, GV.CASETYPES cType, Vector3 position, float height) {
-        GameObject parent = GameObject.Find("BattleField");
->>>>>>> 17f7d762a1275c10cac26dc13c96c369f09f92bd:Assets/Script/Entities/Maps/Case.cs
-
 
     public Case(GV.BATTLEFIELDTYPE bType, GV.CASETYPES cType, Vector3 position, float height, GameObject parent) {
 
+        #region DummyManager
         if (cType == GV.CASETYPES.DUMMY) {
             Debug.Log("Auto generated case");
 
@@ -41,7 +34,7 @@ public class Case{
                     break;
             }
         }
-
+        #endregion
 
         Height = height * GV._PerCaseHeight;
         CaseType = cType;
@@ -61,59 +54,8 @@ public class Case{
 
     }
 
-    public void Update(GV.CASETYPES cType, float height) {
-        Vector3 position = GameObject.transform.position;
-        GameObject.Destroy(GameObject);
-        GameObject parent = GameObject.Find("BattleField");
 
-
-        if (!parent) {
-            parent = new GameObject();
-            parent.name = "BattleField";
-            parent.transform.position = new Vector3(0, 0, 0);
-        }
-
-
-        Height = height * GV._PerCaseHeight;
-        CaseType = cType;
-        GameObject = GameObject.Instantiate(Resources.Load<GameObject>(GV._PathToPrefabs + "BasicTile"));
-        position.y = Height / 2;
-        GameObject.transform.position = position;
-        GameObject.transform.localScale = new Vector3(1, Height, 1);
-        GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + cType.ToString());
-        GameObject.transform.SetParent(parent.transform);
-        GameObject.name = "tile_" + cType.ToString();
-    }
-    // TODO CLEAN
-
-    public Case(float height, GV.CASETYPES caseType, Vector3 position, GameObject parent) {
-        Height = height * GV._PerCaseHeight;
-        CaseType = caseType;
-        StrCaseType = CaseType.ToString();
-        GameObject = GameObject.Instantiate(Resources.Load<GameObject>(GV._PathToPrefabs + "BasicTile"));
-        position.y += Height / 2;
-        GameObject.transform.position = position;
-        GameObject.transform.localScale = new Vector3(1,Height,1);
-        GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + StrCaseType);
-        GameObject.transform.SetParent(parent.transform);
-        GameObject.name = "tile_" + StrCaseType;
-    }
-
-    /*
-    public Case(float height, byte battlefieldType, Vector3 position, GameObject parent) {
-        Height = height * GV._PerCaseHeight;
-
-        CaseType = SelectCase(battlefieldType);
-        GameObject = GameObject.Instantiate(Resources.Load<GameObject>(GV._PathToPrefabs + "BasicTile"));
-        position.y += Height / 2;
-        GameObject.transform.position = position;
-        GameObject.transform.localScale = new Vector3(1, Height, 1);
-        StrCaseType = DefineSrtCaseType(CaseType, battlefieldType);
-        GameObject.GetComponent<Renderer>().material = Resources.Load<Material>(GV._PathToMaterials + "Cases/" + StrCaseType);
-        GameObject.transform.SetParent(parent.transform);
-        GameObject.name = "tile_" + CaseType.ToString();
-    }*/
-
+    #region CaseGenerators
     private GV.CASETYPES GenerateDesertCase() {
         GV.CASETYPES backer;
         float rand = Random.value;
@@ -130,7 +72,6 @@ public class Case{
 
         return backer;
     }
-
     private GV.CASETYPES GenerateIcedCase() {
         GV.CASETYPES backer;
         float rand = Random.value;
@@ -147,7 +88,6 @@ public class Case{
 
         return backer;
     }
-
     private GV.CASETYPES GenerateMediumCase() {
         GV.CASETYPES backer;
         float rand = Random.value;
@@ -164,6 +104,7 @@ public class Case{
 
         return backer;
     }
+    #endregion
 
     private string DefineSrtCaseType(GV.CASETYPES caseType) {
         string backer = "";
@@ -185,51 +126,6 @@ public class Case{
         return backer;
     }
 
-    private GV.CASETYPES SelectCase(byte battlefieldType) {
-        GV.CASETYPES backer = GV.CASETYPES.River;
-
-        switch (battlefieldType) {
-            //Desert
-            case 0:
-                backer = GenerateDesertCase();
-                break;
-            case 1:
-                backer = GenerateMediumCase();
-                break;
-            case 2:
-                backer = GenerateIcedCase();
-                break;
-            default:
-                break;
-        }
-        
-        return backer;
-    }
-
-    private void GenerateTree(byte battlefieldType) {
-        string treeName = "";
-        switch (battlefieldType) {
-            case 0:
-                treeName = "Cactus";
-                break;
-            case 1:
-                treeName = "Oak";
-                break;
-            case 2:
-                treeName = "Fir";
-                break;
-
-        }
-        GameObject tree = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(GV._PathToPrefabs + "CasesDeco/" + treeName));
-        tree.name = treeName;
-        tree.transform.parent = GameObject.transform;
-        Vector3 position = tree.transform.localPosition;
-        position.x = 0;
-        position.z = 0;
-        position.y = position.y + GV._PerCaseHeight;
-        tree.transform.localPosition = position;
-
-    }
 
     private void GenerateTree(string treeName) {
         GameObject tree = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(GV._PathToPrefabs + "CasesDeco/" + treeName));
@@ -240,8 +136,7 @@ public class Case{
         position.z = 0;
         position.y = position.y + GV._PerCaseHeight;
         tree.transform.localPosition = position;
-
     }
-
+    
 
 }
