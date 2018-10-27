@@ -95,7 +95,7 @@ public class Utils {
     /// </summary>
     /// <typeparam name="T1">The type of your first value</typeparam>
     /// <typeparam name="T2">The type of your second value</typeparam>
-    public class Tuple<T1, T2> {
+    [Serializable]public class Tuple<T1, T2> {
         public T1 Value1;
         public T2 Value2;
 
@@ -104,6 +104,7 @@ public class Utils {
             Value2 = value2;
         }
     }
+    [Serializable]
     public class Tuple<T1, T2, T3> {
         public T1 Value1;
         public T2 Value2;
@@ -115,6 +116,7 @@ public class Utils {
             Value3 = value3;
         }
     }
+    [Serializable]
     public class Tuple<T1, T2, T3, T4> {
         public T1 Value1;
         public T2 Value2;
@@ -128,6 +130,7 @@ public class Utils {
             Value4 = value4;
         }
     }
+    [Serializable]
     public class Tuple<T1, T2, T3, T4, T5> {
         public T1 Value1;
         public T2 Value2;

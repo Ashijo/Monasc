@@ -27,6 +27,11 @@ public class GV {
 
     // GLOBAL VARIABLES
     public enum SCENENAMES { DUMMY, MainMenu, StartScene}
-   
+
+
+    // GAME VARIABLES
+    public enum LapsState { DUMMY, BeginTurn, EndTurn }
+    public enum TileEffect { DUMMY, Damage, Heal, Defend };
+
 
 }

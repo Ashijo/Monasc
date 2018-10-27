@@ -6,7 +6,4 @@ using UnityEditor;
 
 public class WS : MonoBehaviour {
 
-
-
 }
-
